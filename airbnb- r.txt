@@ -1,0 +1,95 @@
+airbnb<-read.csv ("C:/Users/c/Documents/project I(2020)/ABNYC2019.csv",header = T,sep="")
+
+str(airbnb) 
+## 1
+desc<-function(X){
+  n<-length(X)
+  mu<-mean(X)
+  s2<-var(X)
+  med<-median(X)
+  skew<-sum((X-mu)^4)/(n*s2^2)-3
+  kurt<-sum((X-mu)^3)/(n*s2^(3/2))
+  Q1<-quantile(X)[2]
+  Q3<-quantile(X)[4]
+  x<-c(mu,s2,med,skew,kurt,Q1,Q3)
+  names(x)<-c('mean','var','median','skewness','kurtosis','Q1','Q3')
+  x}
+
+
+by(airbnb$price,airbnb$neighbourhood_group,desc)
+
+
+
+boxplot (airbnb$availability_365~airbnb$neighbourhood_group, main="Availability for booking",col=2:6, ,horizontal = T)
+
+
+x<-table(airbnb$room_type,airbnb$neighbourhood_group)
+
+barplot (x,beside=T,col=3:5,main="Bar Plot of room type by location",xlab="Location")
+legend ("topright", levels(airbnb$room_type), col=3:5, lwd=3)
+
+tetartimoria<-quantile(airbnb$price)
+tetartimoria 
+airbnb$price_grp<-cut (airbnb$price  , tetartimoria )
+levels(airbnb$price_grp)
+
+levels (airbnb$price_grp  )<-c("Cheap","Average","Expensive","Super Expensive")
+####(365/12)*6
+m1<-function(x) ifelse (x<=180, paste (c ("Less than 6m")), paste ( c ("More than 6m")))
+airbnb$availability_6m<-m1(airbnb$availability_365)
+
+
+tab_pricegrp<-prop.table(table(airbnb$price_grp))
+tab_pricegrp
+tab_avai6m<-prop.table(table(airbnb$availability_6m))
+tab_avai6m
+tab<-xtabs(~airbnb$availability_6m+airbnb$price_grp)
+tab
+barplot(tab,beside = T,col=4:5,main="Availability by price" )
+legend ("topright", c("Less than 6m","More than 6m"), col=4:5, lwd=3)
+by(airbnb$price,airbnb$price_grp,mean)
+
+dat_StateIsland<-airbnb[airbnb$neighbourhood_group=="Staten Island",]
+dat_Bronx<-airbnb[airbnb$neighbourhood_group=="Bronx",]
+airbnbnew<-rbind(dat_Bronx,dat_StateIsland)
+
+
+par(mfrow=c(1,2))
+boxplot(airbnbnew$availability_365,probability = T,main="Availability for airbnb in Bronx and Staten Island")
+boxplot(airbnb$availability_365,probability = T,main="Availability for airbnb in New York")
+
+
+
+skew<-function(x){
+  n<-length(x)
+  z<-(x-mean(x))/sd(x)
+  sum(z^3)/n}
+
+kurtosis<-function(x){
+  n<-length(x)
+  z<-(x-mean(x))/sd(x)
+  sum(z^4)/n}
+
+
+
+skew(airbnb$price)
+kurtosis(airbnb$price)
+
+skew(airbnbnew$price)
+kurtosis(airbnbnew$price)
+
+skew(log(airbnb$price+10^(-6)))
+kurtosis(log(airbnb$price+10^(-6)))
+
+skew(log(airbnbnew$price+10^(-6)))
+kurtosis(log(airbnbnew$price+10^(-6)))
+
+
+
+res<-NULL
+for (i in 1:50) {
+  ind<- sample(1:381,150)
+  res<-c(res,mean(airbnbnew$price[ind]))
+}
+hist(res)
+
