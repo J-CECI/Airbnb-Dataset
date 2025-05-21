@@ -1,33 +1,51 @@
-The dataset that we will explore is about the Airbnb in New York for the year 2019.
+# 🏡 Ανάλυση Δεδομένων Airbnb
 
-The project focuses on exploring the Airbnb data using R (Airbnb-r.txt) and Python (Airbnb.ipynb and Airbnb.py), 
-offering insights into key factors like pricing, availability, and room types across various New York City neighborhoods.
+## 👤 Συγγραφέας
+**Ιωάννα Τσέτσι (Joana Ceci)**  
+**Ανάλυση Δεδομένων με Python – Jupyter Notebook**  
+**Θέμα:** Εξερεύνηση και ανάλυση δεδομένων από το Airbnb
 
-The variables we have are:
+---
 
+## 📁 Περίληψη Έργου
 
-id: Number of accommodation         
+Το παρόν έργο περιλαμβάνει ανάλυση δεδομένων σχετικών με κρατήσεις Airbnb, στοχεύοντας στην κατανόηση του τρόπου λειτουργίας της πλατφόρμας και της συμπεριφοράς των χρηστών.
 
-neighbourhood_group: neighborhood group (Bronx, Brooklyn, Manhattan, Queens, Staten Island)
+---
 
+## 🧪 Αντικείμενα Ανάλυσης
 
-room_type: Accommodation type (Entire home/apt, Private room, Shared room)
+- Ποιες είναι οι πιο συνηθισμένες γειτονιές με υψηλή ζήτηση;
+- Ποιοι τύποι καταλυμάτων προτιμούνται περισσότερο;
+- Ποιες είναι οι τιμές ανά περιοχή/τύπο;
+- Υπάρχουν εποχικές διακυμάνσεις στη διαθεσιμότητα ή τις τιμές;
 
+---
 
-price:Price per night (in dollars)
+## 🔍 Στάδια Ανάλυσης
 
+1. **Εισαγωγή και καθαρισμός δεδομένων**
+2. **Εξερεύνηση και περιγραφική στατιστική** των μεταβλητών (π.χ. τιμή, τύπος δωματίου, γειτονιά)
+3. **Οπτικοποιήσεις** με χρήση βιβλιοθηκών Python
+4. **Εξαγωγή επιχειρηματικών συμπερασμάτων**
 
-availability_365:Number of days in the year that the accommodation is available for tenancy
+---
 
+## 🛠 Βιβλιοθήκες Python που χρησιμοποιούνται
 
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `seaborn`
 
-This project performs statistical analyses, including:
+---
 
+## 📚 Δεξιότητες
 
-•	descriptive statistics, 
+- Ανάλυση δεδομένων με Python  
+- Χρήση Jupyter Notebook  
+- Οπτικοποίηση δεδομένων  
+- Ερμηνεία μεταβλητών και τάσεων  
+- Καθαρισμός & μετασχηματισμός δεδομένων
 
-
-•	statistical measures,
-
-
-•	visualization (boxplot and bar plot).
+---
